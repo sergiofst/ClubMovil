@@ -460,6 +460,9 @@
     <Compile Include="Handlers\ContenidoImagen.ashx.vb">
       <DependentUpon>ContenidoImagen.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ContenidoResizeImagen.ashx.vb">
+      <DependentUpon>ContenidoResizeImagen.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Master\Clean.Master.designer.vb">
       <DependentUpon>Clean.Master</DependentUpon>
     </Compile>
@@ -528,6 +531,7 @@
     <Content Include="Master\LeftSideBar.master" />
     <Content Include="Dialogs\Dialogs.master" />
     <Content Include="Handlers\ContenidoImagen.ashx" />
+    <Content Include="Handlers\ContenidoResizeImagen.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
