@@ -1,0 +1,18 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/Master/Default.Master" AutoEventWireup="false"
+    CodeBehind="LeftSideBar.master.vb" Inherits="ClubMovilAdmin.LeftSideBar" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row">
+        <div class="span3">
+            <asp:ContentPlaceHolder ID="LeftSideBar" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="span9">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+</asp:Content>

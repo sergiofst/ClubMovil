@@ -1,0 +1,24 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/Master/Site.Master" AutoEventWireup="false"
+    CodeBehind="Default.master.vb" Inherits="ClubMovilAdmin._Default2" %>
+
+<%@ Register Src="../Controls/NavBarControl.ascx" TagName="NavBarControl" TagPrefix="uc1" %>
+<asp:Content ID="HeadM" ContentPlaceHolderID="HeadContent" runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</asp:Content>
+<asp:Content ID="ContentM" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <div class="row">
+            <uc1:NavBarControl ID="NavBarControl1" runat="server" />
+        </div>
+        <div class="row">
+            <div>
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" EnableClientScript="false"
+                    CssClass="alert alert-error" DisplayMode="SingleParagraph" />
+            </div>
+            <div class="span12">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </div>
+</asp:Content>

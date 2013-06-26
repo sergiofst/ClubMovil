@@ -1,0 +1,39 @@
+﻿body
+{
+    padding-top: 20px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+
+.login-wrapper 
+{
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.align-right 
+{
+    text-align: right;
+}
+
+.align-center 
+{
+    text-align:center;
+}
+
+
+.thumb 
+{
+    width: 200px;
+    height: 200px;
+}
+
+.thumb_imagen 
+{
+    padding: 5px;
+}
+
+.thumb_actions 
+{
+    padding: 5px;
+}

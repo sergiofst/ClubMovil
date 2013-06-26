@@ -1,0 +1,7 @@
+﻿To generate these images, you should start with your raw resource in vector format and generate the images for each density using the following size scale:
+
+xhdpi: 2.0
+hdpi: 1.5
+mdpi: 1.0 (baseline)
+ldpi: 0.75
+This means that if you generate a 200x200 image for xhdpi devices, you should generate the same resource in 150x150 for hdpi, 100x100 for mdpi and finally a 75x75 image for ldpi devices.

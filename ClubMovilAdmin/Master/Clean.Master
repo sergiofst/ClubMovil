@@ -1,0 +1,17 @@
+﻿<%@ Master Language="VB" MasterPageFile="~/Master/Site.Master" AutoEventWireup="false"
+    CodeBehind="Clean.master.vb" Inherits="ClubMovilAdmin.Clean" %>
+
+<asp:Content ID="HeadM" ContentPlaceHolderID="HeadContent" runat="server">
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="ContentM" ContentPlaceHolderID="MainContent" runat="server">
+        <div >
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" EnableClientScript="false"
+                CssClass="alert alert-error" DisplayMode="SingleParagraph" />
+        </div>
+        <div class="row">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+</asp:Content>

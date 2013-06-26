@@ -1,0 +1,50 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Mobile.master.vb" Inherits="ClubMovilPortal.Mobile" %>
+
+<!DOCTYPE HTML>
+<html>
+<head runat="server">
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css' />
+    <link href="~/Content/css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/Mobile/css/style.css" rel="stylesheet" type="text/css"/>
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div id="header-wrapper">
+        <div id="header-container">
+            <img src="~/Content/Mobile/img/logo.jpg" runat="server" alt="FusionMovil"/>
+        </div>
+    </div>
+    <div id="headline-wrapper">
+        <div id="headline-container">
+            <asp:ContentPlaceHolder ID="HeadlineContent" runat="server" />
+        </div>
+    </div>
+    <div id="main-wrapper">
+        <div id="main-container">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        </div>
+    </div>
+    <div id="footer-wrapper">
+        <div id="footer-container">
+            <p>
+                <a class="color-white" href="<%=Me.ResolveUrl("~/Favorito/Agregar") %>">Agregar a Favoritos</a>
+            </p>
+            <p>
+                <a class="color-white" href="http://upaapps.telcel.com:8582/telcelwap.wml">Ideas</a>
+            </p>
+            <p>
+                <a class="color-white" href="<%=Me.ResolveUrl("~/Ayuda.aspx") %>">Ayuda</a>
+                &nbsp;
+                <a class="color-white" href="<%=Me.ResolveUrl("~/Tarifas.aspx") %>">Tarifas</a>
+            </p>
+            <p>
+                Servicio a Clientes
+                <br />
+                01800-9999999
+            </p>
+            <p>&copy; 2010 Fusion Movil</p>
+        </div>
+    </div>
+</body>
+</html>

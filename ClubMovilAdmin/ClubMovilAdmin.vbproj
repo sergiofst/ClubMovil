@@ -1,0 +1,582 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{EFCCF244-4C51-4779-BC03-5A4F6D654D5E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ClubMovilAdmin</RootNamespace>
+    <AssemblyName>ClubMovilAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ClubMovilAdmin.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>ClubMovilAdmin.xml</DocumentationFile>
+    <NoWarn>
+    </NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntLibContrib.Data.MySql, Version=5.0.505.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\EntLibContrib.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=5.0.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=5.0.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Librerias\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\Librerias\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ChangePasswordSuccess.aspx" />
+    <Content Include="Account\Default.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Logout.aspx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Admin\Clientes\lst_suscripciones.aspx" />
+    <Content Include="Admin\Clientes\upd_suscripcion.aspx" />
+    <Content Include="Admin\Contenido\add_categoria.aspx" />
+    <Content Include="Admin\Contenido\add_contenido.aspx" />
+    <Content Include="Admin\add_usuario.aspx" />
+    <Content Include="Admin\Default.aspx" />
+    <Content Include="Admin\Contenido\lst_categorias.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido_archivos.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido_categorias.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido_claves.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido_imagenes.aspx" />
+    <Content Include="Admin\Contenido\lst_contenido_info.aspx" />
+    <Content Include="Admin\lst_usuarios.aspx" />
+    <Content Include="Admin\lst_usuario_roles.aspx" />
+    <Content Include="Admin\Contenido\upd_categoria.aspx" />
+    <Content Include="Admin\Contenido\upd_contenido.aspx" />
+    <Content Include="Admin\upd_usuario.aspx" />
+    <Content Include="Admin\upd_usuario_pass.aspx" />
+    <Content Include="Assets\css\bootstrap-responsive.css" />
+    <Content Include="Assets\css\bootstrap-responsive.min.css" />
+    <Content Include="Assets\css\bootstrap.css" />
+    <Content Include="Assets\css\bootstrap.min.css" />
+    <Content Include="Assets\ico\apple-touch-icon-114-precomposed.png" />
+    <Content Include="Assets\ico\apple-touch-icon-144-precomposed.png" />
+    <Content Include="Assets\ico\apple-touch-icon-57-precomposed.png" />
+    <Content Include="Assets\ico\apple-touch-icon-72-precomposed.png" />
+    <Content Include="Assets\ico\favicon.ico" />
+    <Content Include="Assets\ico\favicon.png" />
+    <Content Include="Assets\img\bootstrap-docs-readme.png" />
+    <Content Include="Assets\img\bootstrap-mdo-sfmoma-01.jpg" />
+    <Content Include="Assets\img\bootstrap-mdo-sfmoma-02.jpg" />
+    <Content Include="Assets\img\bootstrap-mdo-sfmoma-03.jpg" />
+    <Content Include="Assets\img\bs-docs-bootstrap-features.png" />
+    <Content Include="Assets\img\bs-docs-masthead-pattern.png" />
+    <Content Include="Assets\img\bs-docs-responsive-illustrations.png" />
+    <Content Include="Assets\img\bs-docs-twitter-github.png" />
+    <Content Include="Assets\img\example-sites\8020select.png" />
+    <Content Include="Assets\img\example-sites\adoptahydrant.png" />
+    <Content Include="Assets\img\example-sites\breakingnews.png" />
+    <Content Include="Assets\img\example-sites\fleetio.png" />
+    <Content Include="Assets\img\example-sites\gathercontent.png" />
+    <Content Include="Assets\img\example-sites\jshint.png" />
+    <Content Include="Assets\img\example-sites\kippt.png" />
+    <Content Include="Assets\img\example-sites\soundready.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-carousel.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-fluid.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-justified-nav.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-marketing-narrow.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-marketing.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-signin.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-starter.png" />
+    <Content Include="Assets\img\examples\bootstrap-example-sticky-footer.png" />
+    <Content Include="Assets\img\examples\browser-icon-chrome.png" />
+    <Content Include="Assets\img\examples\browser-icon-firefox.png" />
+    <Content Include="Assets\img\examples\browser-icon-safari.png" />
+    <Content Include="Assets\img\examples\slide-01.jpg" />
+    <Content Include="Assets\img\examples\slide-02.jpg" />
+    <Content Include="Assets\img\examples\slide-03.jpg" />
+    <Content Include="Assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Assets\img\glyphicons-halflings.png" />
+    <Content Include="Assets\img\grid-baseline-20px.png" />
+    <Content Include="Assets\img\less-logo-large.png" />
+    <Content Include="Assets\img\responsive-illustrations.png" />
+    <Content Include="Assets\js\application.js" />
+    <Content Include="Assets\js\bootstrap-affix.js" />
+    <Content Include="Assets\js\bootstrap-alert.js" />
+    <Content Include="Assets\js\bootstrap-aspnetvalidators.js" />
+    <Content Include="Assets\js\bootstrap-button.js" />
+    <Content Include="Assets\js\bootstrap-carousel.js" />
+    <Content Include="Assets\js\bootstrap-collapse.js" />
+    <Content Include="Assets\js\bootstrap-dropdown.js" />
+    <Content Include="Assets\js\bootstrap-modal.js" />
+    <Content Include="Assets\js\bootstrap-popover.js" />
+    <Content Include="Assets\js\bootstrap-scrollspy.js" />
+    <Content Include="Assets\js\bootstrap-tab.js" />
+    <Content Include="Assets\js\bootstrap-tooltip.js" />
+    <Content Include="Assets\js\bootstrap-transition.js" />
+    <Content Include="Assets\js\bootstrap-typeahead.js" />
+    <Content Include="Assets\js\bootstrap.js" />
+    <Content Include="Assets\js\bootstrap.min.js" />
+    <Content Include="Assets\js\google-code-prettify\prettify.css" />
+    <Content Include="Assets\js\google-code-prettify\prettify.js" />
+    <Content Include="Assets\js\holder\holder.js" />
+    <Content Include="Assets\js\html5shiv.js" />
+    <Content Include="Assets\js\jquery.js" />
+    <Content Include="Assets\css\Site.css" />
+    <Content Include="Controls\PopupButton.ascx" />
+    <Content Include="Dialogs\SelRolDialog.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Index.html" />
+    <Content Include="Controls\NavBarControl.ascx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\Account.master.designer.vb">
+      <DependentUpon>Account.master</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Account.master.vb">
+      <DependentUpon>Account.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.designer.vb">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePasswordSuccess.aspx.vb">
+      <DependentUpon>ChangePasswordSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Account\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.designer.vb">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.vb">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.vb">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.vb">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Clientes\lst_suscripciones.aspx.designer.vb">
+      <DependentUpon>lst_suscripciones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Clientes\lst_suscripciones.aspx.vb">
+      <DependentUpon>lst_suscripciones.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Clientes\upd_suscripcion.aspx.designer.vb">
+      <DependentUpon>upd_suscripcion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Clientes\upd_suscripcion.aspx.vb">
+      <DependentUpon>upd_suscripcion.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\add_categoria.aspx.designer.vb">
+      <DependentUpon>add_categoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\add_categoria.aspx.vb">
+      <DependentUpon>add_categoria.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\add_contenido.aspx.designer.vb">
+      <DependentUpon>add_contenido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\add_contenido.aspx.vb">
+      <DependentUpon>add_contenido.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\add_usuario.aspx.designer.vb">
+      <DependentUpon>add_usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\add_usuario.aspx.vb">
+      <DependentUpon>add_usuario.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Admin.master.designer.vb">
+      <DependentUpon>Admin.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Admin.master.vb">
+      <DependentUpon>Admin.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_categorias.aspx.designer.vb">
+      <DependentUpon>lst_categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_categorias.aspx.vb">
+      <DependentUpon>lst_categorias.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido.aspx.designer.vb">
+      <DependentUpon>lst_contenido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido.aspx.vb">
+      <DependentUpon>lst_contenido.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_archivos.aspx.designer.vb">
+      <DependentUpon>lst_contenido_archivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_archivos.aspx.vb">
+      <DependentUpon>lst_contenido_archivos.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_categorias.aspx.designer.vb">
+      <DependentUpon>lst_contenido_categorias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_categorias.aspx.vb">
+      <DependentUpon>lst_contenido_categorias.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_claves.aspx.designer.vb">
+      <DependentUpon>lst_contenido_claves.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_claves.aspx.vb">
+      <DependentUpon>lst_contenido_claves.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_imagenes.aspx.designer.vb">
+      <DependentUpon>lst_contenido_imagenes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_imagenes.aspx.vb">
+      <DependentUpon>lst_contenido_imagenes.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_info.aspx.designer.vb">
+      <DependentUpon>lst_contenido_info.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\lst_contenido_info.aspx.vb">
+      <DependentUpon>lst_contenido_info.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\lst_usuarios.aspx.designer.vb">
+      <DependentUpon>lst_usuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\lst_usuarios.aspx.vb">
+      <DependentUpon>lst_usuarios.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\lst_usuario_roles.aspx.designer.vb">
+      <DependentUpon>lst_usuario_roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\lst_usuario_roles.aspx.vb">
+      <DependentUpon>lst_usuario_roles.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\upd_categoria.aspx.designer.vb">
+      <DependentUpon>upd_categoria.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\upd_categoria.aspx.vb">
+      <DependentUpon>upd_categoria.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Contenido\upd_contenido.aspx.designer.vb">
+      <DependentUpon>upd_contenido.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Contenido\upd_contenido.aspx.vb">
+      <DependentUpon>upd_contenido.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\upd_usuario.aspx.designer.vb">
+      <DependentUpon>upd_usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\upd_usuario.aspx.vb">
+      <DependentUpon>upd_usuario.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Admin\upd_usuario_pass.aspx.designer.vb">
+      <DependentUpon>upd_usuario_pass.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\upd_usuario_pass.aspx.vb">
+      <DependentUpon>upd_usuario_pass.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Clases\Adapters\ButtonAdapter.vb" />
+    <Compile Include="Clases\Adapters\RUGridViewAdapter.vb" />
+    <Compile Include="Clases\Adapters\RUMenuAdapter.vb" />
+    <Compile Include="Clases\Controls\IsInRoleControl.vb" />
+    <Compile Include="Clases\Controls\RecursiveULMenu.vb" />
+    <Compile Include="Clases\Page\BasePage.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Clases\Security\CMRoleProvider.vb" />
+    <Compile Include="Clases\Utils\CompressViewState.vb" />
+    <Compile Include="Clases\Utils\ConnectionStringHelper.vb" />
+    <Compile Include="Clases\Utils\ContenidoImagenResolver.vb" />
+    <Compile Include="Clases\Utils\ContenidoArchivoResolver.vb" />
+    <Compile Include="Clases\Utils\ErrorSummary.vb" />
+    <Compile Include="Clases\Utils\ListUtils.vb" />
+    <Compile Include="Clases\Utils\RandomPassword.vb" />
+    <Compile Include="Clases\Utils\SiteMapFileProvider.vb" />
+    <Compile Include="Controls\PopupButton.ascx.designer.vb">
+      <DependentUpon>PopupButton.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PopupButton.ascx.vb">
+      <DependentUpon>PopupButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dialogs\Dialogs.master.designer.vb">
+      <DependentUpon>Dialogs.master</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Dialogs.master.vb">
+      <DependentUpon>Dialogs.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SelRolDialog.aspx.designer.vb">
+      <DependentUpon>SelRolDialog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SelRolDialog.aspx.vb">
+      <DependentUpon>SelRolDialog.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.vb">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NavBarControl.ascx.designer.vb">
+      <DependentUpon>NavBarControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NavBarControl.ascx.vb">
+      <DependentUpon>NavBarControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Handlers\ContenidoImagen.ashx.vb">
+      <DependentUpon>ContenidoImagen.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Clean.Master.designer.vb">
+      <DependentUpon>Clean.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Clean.Master.vb">
+      <DependentUpon>Clean.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Default.Master.designer.vb">
+      <DependentUpon>Default.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Default.Master.vb">
+      <DependentUpon>Default.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\LeftSideBar.master.designer.vb">
+      <DependentUpon>LeftSideBar.master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\LeftSideBar.master.vb">
+      <DependentUpon>LeftSideBar.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Master\Site.Master.designer.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Master\Site.Master.vb">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <None Include="App_Browsers\ClubMovilAdmin.browser" />
+    <Content Include="Admin\Admin.master" />
+    <Content Include="Admin\Web.config" />
+    <Content Include="Account\Account.master" />
+    <None Include="Assets\js\README.md" />
+    <Content Include="Master\Clean.Master" />
+    <Content Include="Master\Default.Master" />
+    <Content Include="Master\LeftSideBar.master" />
+    <Content Include="Dialogs\Dialogs.master" />
+    <Content Include="Handlers\ContenidoImagen.ashx" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Master\Site.Master" />
+    <Content Include="NLog.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClubMovil.Data\ClubMovil.Data.vbproj">
+      <Project>{B83BB2D1-2A9C-4049-A817-A3826D6316D5}</Project>
+      <Name>ClubMovil.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53456</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

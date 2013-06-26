@@ -1,0 +1,69 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="ClubMovilAdmin.Site" %>
+
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <title></title>
+    <!-- Le styles -->
+    <link href="~/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/assets/css/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="~/assets/css/Site.css" rel="stylesheet" />
+    <style type="text/css">
+        .sidebar-nav
+        {
+            padding: 9px 0;
+        }
+    </style>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
+    <!--
+    <link rel="shortcut icon" href="~/assets/ico/favicon.ico" />
+    -->
+    <!--
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/assets/ico/apple-touch-icon-114-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/assets/ico/apple-touch-icon-72-precomposed.png" />
+    <link rel="apple-touch-icon-precomposed" href="~/assets/ico/apple-touch-icon-57-precomposed.png" />
+    -->
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form id="form1" runat="server">
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <asp:ScriptManager runat="server" ID="ScriptManager1">
+        <Scripts>
+            <asp:ScriptReference Path="~/assets/js/jquery.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-transition.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-alert.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-modal.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-dropdown.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-scrollspy.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-tab.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-tooltip.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-popover.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-button.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-collapse.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-carousel.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-typeahead.js" />
+            <asp:ScriptReference Path="~/assets/js/bootstrap-aspnetvalidators.js" />
+        </Scripts>
+    </asp:ScriptManager>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //alert("document ready occurred!");
+            UpgradeASPNETValidation();
+        });
+    </script>
+    </form>
+</body>
+</html>
