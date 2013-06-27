@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : Localhost
-Source Server Version : 50531
+Source Server Version : 50612
 Source Host           : localhost:3306
 Source Database       : clubmovil
 
 Target Server Type    : MYSQL
-Target Server Version : 50531
+Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2013-06-24 23:06:17
+Date: 2013-06-27 17:48:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -90,7 +90,7 @@ CREATE TABLE `contenidocategoria` (
   `IdCategoria` int(11) NOT NULL,
   `Estatus` bit(1) NOT NULL,
   PRIMARY KEY (`IdContenidoCategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of contenidocategoria
@@ -100,6 +100,9 @@ INSERT INTO `contenidocategoria` VALUES ('2', '2', '1', '');
 INSERT INTO `contenidocategoria` VALUES ('3', '3', '2', '');
 INSERT INTO `contenidocategoria` VALUES ('20', '4', '3', '');
 INSERT INTO `contenidocategoria` VALUES ('21', '5', '3', '');
+INSERT INTO `contenidocategoria` VALUES ('22', '1', '2', '');
+INSERT INTO `contenidocategoria` VALUES ('23', '1', '3', '');
+INSERT INTO `contenidocategoria` VALUES ('24', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for `contenidoclave`
@@ -134,11 +137,11 @@ CREATE TABLE `contenidoimagen` (
 -- ----------------------------
 -- Records of contenidoimagen
 -- ----------------------------
-INSERT INTO `contenidoimagen` VALUES ('1', '1', 'C:\\ClubMovil\\Imagenes\\sjtxrx3d.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('2', '1', 'C:\\ClubMovil\\Imagenes\\iya2fptn.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('3', '1', 'C:\\ClubMovil\\Imagenes\\znrncun5.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('4', '1', 'C:\\ClubMovil\\Imagenes\\i3n003gp.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('5', '1', 'C:\\ClubMovil\\Imagenes\\pvhxowgy.jpg', '');
+INSERT INTO `contenidoimagen` VALUES ('1', '1', 'sjtxrx3d.jpg', '');
+INSERT INTO `contenidoimagen` VALUES ('2', '1', 'iya2fptn.jpg', '');
+INSERT INTO `contenidoimagen` VALUES ('3', '1', 'znrncun5.jpg', '');
+INSERT INTO `contenidoimagen` VALUES ('4', '1', 'i3n003gp.jpg', '');
+INSERT INTO `contenidoimagen` VALUES ('5', '1', 'pvhxowgy.jpg', '');
 
 -- ----------------------------
 -- Table structure for `contenidoinfo`
@@ -159,6 +162,22 @@ CREATE TABLE `contenidoinfo` (
 -- ----------------------------
 INSERT INTO `contenidoinfo` VALUES ('1', '1', 'Descripcion', 'Esta es la descripcion del contenido', '', '');
 INSERT INTO `contenidoinfo` VALUES ('2', '1', 'Autor', 'Este es el autor del contenido', '', '');
+
+-- ----------------------------
+-- Table structure for `descarga`
+-- ----------------------------
+DROP TABLE IF EXISTS `descarga`;
+CREATE TABLE `descarga` (
+  `IdDescarga` int(11) NOT NULL AUTO_INCREMENT,
+  `IdContenido` int(11) NOT NULL,
+  `IdTransaccion` int(20) NOT NULL,
+  `Fecha` datetime NOT NULL,
+  PRIMARY KEY (`IdDescarga`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of descarga
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `favorito`
@@ -5269,7 +5288,7 @@ INSERT INTO `tipocontenido` VALUES ('7', 'Suscripcion', '0', '7', '');
 DROP TABLE IF EXISTS `transaccion`;
 CREATE TABLE `transaccion` (
   `idTransaccion` int(11) NOT NULL AUTO_INCREMENT,
-  `transactionId` int(11) NOT NULL,
+  `transactionId` varchar(20) NOT NULL,
   `SRSRatingId` int(11) NOT NULL,
   `Telefono` varchar(10) NOT NULL,
   `IdContenido` int(11) NOT NULL,
@@ -5283,7 +5302,7 @@ CREATE TABLE `transaccion` (
   `Estatus` int(11) NOT NULL,
   `idSuscripcion` int(11) NOT NULL,
   PRIMARY KEY (`idTransaccion`)
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of transaccion
@@ -5298,6 +5317,9 @@ INSERT INTO `transaccion` VALUES ('33', '0', '1', '1234567890', '4', 'Mariel 01'
 INSERT INTO `transaccion` VALUES ('34', '0', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/22994468940546049', 'http://localhost:57546/Contenido/Cancel/22994468940546049', 'http://localhost:57546/Contenido/Error/22994468940546049', '', '', '2013-06-06 23:05:15', '0', '18');
 INSERT INTO `transaccion` VALUES ('35', '0', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/22994468940546050', 'http://localhost:57546/Contenido/Cancel/22994468940546050', 'http://localhost:57546/Contenido/Error/22994468940546050', '', '', '2013-06-06 23:09:20', '0', '18');
 INSERT INTO `transaccion` VALUES ('36', '0', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/22994468940546051', 'http://localhost:57546/Contenido/Cancel/22994468940546051', 'http://localhost:57546/Contenido/Error/22994468940546051', '', '', '2013-06-06 23:20:02', '0', '18');
+INSERT INTO `transaccion` VALUES ('37', '0', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/23024092437282816', 'http://localhost:57546/Contenido/Cancel/23024092437282816', 'http://localhost:57546/Contenido/Error/23024092437282816', '', '', '2013-06-27 16:58:46', '0', '18');
+INSERT INTO `transaccion` VALUES ('38', '0', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/23024092437282817', 'http://localhost:57546/Contenido/Cancel/23024092437282817', 'http://localhost:57546/Contenido/Error/23024092437282817', '', '', '2013-06-27 16:59:04', '0', '18');
+INSERT INTO `transaccion` VALUES ('39', '2147483647', '1', '1234567890', '1', 'Fondo 01', 'http://localhost:57546/Contenido/Download/23024092437282818', 'http://localhost:57546/Contenido/Cancel/23024092437282818', 'http://localhost:57546/Contenido/Error/23024092437282818', '', '', '2013-06-27 17:01:29', '0', '18');
 
 -- ----------------------------
 -- Table structure for `usuario`
