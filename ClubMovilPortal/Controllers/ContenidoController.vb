@@ -145,6 +145,7 @@ Public Class ContenidoController
 
             ' Entrego el contenido
             Dim drContenido As DataRow = New ContenidoDAO().GetContenido(CInt(drTransaccion("IdContenido")))
+
             'return File(filename, contentType,"Report.pdf")
         End If
 
