@@ -18,7 +18,7 @@ Public Class TransaccionDAO
         End With
 
         Dim cmd As DbCommand = GetSqlStringCommand(query.ToString())
-        AddInParameter(cmd, "@transactionId", DbType.String, 0)
+        AddInParameter(cmd, "@transactionId", DbType.Int32, transId)
         AddInParameter(cmd, "@SRSRatingId", DbType.Int32, srsRatingId)
         AddInParameter(cmd, "@Telefono", DbType.String, telefono)
         AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
@@ -35,6 +35,12 @@ Public Class TransaccionDAO
 
     Public Function GetUUIDShort() As String
         Return CStr(ExecuteDataRow(GetSqlStringCommand("SELECT UUID_SHORT()"))(0))
+    End Function
+
+    Public Function GetTransaccionByTransactionId(ByVal transId As String) As DataRow
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdTransaccion,transactionId,SRSRatingId,Telefono,IdContenido,ContenidoNombre,UrlOK, UrlCancel, UrlError, UrlUnsusc, ExtraParam, Fecha, Estatus, IdSuscripcion FROM Transaccion WHERE transactionId=@TransactionId")
+        AddInParameter(cmd, "@transactionId", DbType.Int32, transId)
+        Return ExecuteDataRow(cmd)
     End Function
 
     Public Enum Estatus

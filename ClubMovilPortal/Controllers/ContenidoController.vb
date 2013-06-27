@@ -130,8 +130,28 @@ Public Class ContenidoController
         Return View()
     End Function
 
-    'Public Function Download(ByVal id As Integer) As FileResult
-    '    return File(filename, contentType,"Report.pdf");
-    'End Function
+    Public Function Download(ByVal id As String) As FileResult
+        ' Verificar el cobro
+        Dim reqTransaction As TransactionService = New TransactionService(ConfigurationManager.AppSettings("SIA.TransactionService"))
+
+        Dim transResponse As String = reqTransaction.getStatus(GetSIAUser(), GetSIAPassword(), CStr(id))
+
+        ' Cobrado
+        If transResponse..Equals("0|4") Then
+            ' Guardo la descarga del archivo
+            Dim drTransaccion As DataRow = New TransaccionDAO().GetTransaccionByTransactionId(id)
+            Dim idDescarga As Integer = New DescargaDAO().AddDescarga(CInt(drTransaccion("IdContenido")), _
+                                                                           CInt(drTransaccion("IdTransaccion")))
+
+            ' Entrego el contenido
+            Dim drContenido As DataRow = New ContenidoDAO().GetContenido(CInt(drTransaccion("IdContenido")))
+            'return File(filename, contentType,"Report.pdf")
+        End If
+
+
+        ' Entregar el contenido
+
+        Return Nothing
+    End Function
 
 End Class

@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports ClubMovil.Utils
 
 Namespace HtmlHelpers
     Public Module ProductHelper
@@ -23,12 +24,14 @@ Namespace HtmlHelpers
         End Function
 
         <Extension()> _
-        Public Function ProductImage(ByVal helper As HtmlHelper, ByVal imageUrl As String) As MvcHtmlString
+        Public Function ContenidoImagen(ByVal helper As HtmlHelper, ByVal archivo As String) As MvcHtmlString
             Dim imgTag As TagBuilder = New TagBuilder("img")
-            imgTag.MergeAttribute("src", BaseHelper.ResolveContentUrl(helper, imageUrl))
-
+            imgTag.MergeAttribute("width", "100%")
+            'imgTag.MergeAttribute("src", BaseHelper.ResolveContentUrl(helper, "~/Handlers/ContenidoImagen.ashx?id=" & archivo))
+            imgTag.MergeAttribute("src", UrlHelper.GenerateContentUrl("~/Handlers/ContenidoImagen.ashx?id=" & archivo, helper.ViewContext.HttpContext))
             Return MvcHtmlString.Create(imgTag.ToString(TagRenderMode.Normal))
         End Function
+
 
     End Module
 End Namespace

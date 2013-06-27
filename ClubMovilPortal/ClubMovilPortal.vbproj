@@ -163,6 +163,9 @@
     <Compile Include="Global.asax.vb">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ContenidoImagen.ashx.vb">
+      <DependentUpon>ContenidoImagen.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\CategoryHelpers.vb" />
     <Compile Include="Helpers\MenuHelper.vb" />
     <Compile Include="Helpers\ContenidoHelper.vb" />
@@ -208,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\wurfl-latest.zip" />
+    <Content Include="Handlers\ContenidoImagen.ashx" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -295,6 +299,14 @@
     <ProjectReference Include="..\ClubMovil.Data\ClubMovil.Data.vbproj">
       <Project>{B83BB2D1-2A9C-4049-A817-A3826D6316D5}</Project>
       <Name>ClubMovil.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClubMovil.Utils\ClubMovil.Utils.vbproj">
+      <Project>{67082900-C34D-4DB1-8423-D078E098F213}</Project>
+      <Name>ClubMovil.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClubMovil.Web\ClubMovil.Web.vbproj">
+      <Project>{8CE93BAF-558A-4DF1-964B-A8C1C06E96CB}</Project>
+      <Name>ClubMovil.Web</Name>
     </ProjectReference>
     <ProjectReference Include="..\Telcel.SIA\Telcel.SIA.vbproj">
       <Project>{7524D37E-F45D-4A37-B1A4-B811E87E3BD5}</Project>

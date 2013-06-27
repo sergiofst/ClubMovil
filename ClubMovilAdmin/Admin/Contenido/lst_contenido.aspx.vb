@@ -25,15 +25,15 @@ Public Class lst_contenido
     Private Sub gvDatos_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gvDatos.RowCommand
         Me.Context.Items.Add("IdContenido", e.CommandArgument)
         If e.CommandName.Equals("Editar") Then
-            Server.Transfer("~/Admin/upd_contenido.aspx", False)
+            Server.Transfer("~/Admin/Contenido/upd_contenido.aspx", False)
         ElseIf e.CommandName.Equals("Claves") Then
-            Server.Transfer("~/Admin/lst_contenido_claves.aspx", False)
+            Server.Transfer("~/Admin/Contenido/lst_contenido_claves.aspx", False)
         ElseIf e.CommandName.Equals("Categorias") Then
-            Server.Transfer("~/Admin/lst_contenido_categorias.aspx", False)
+            Server.Transfer("~/Admin/Contenido/lst_contenido_categorias.aspx", False)
         ElseIf e.CommandName.Equals("Imagenes") Then
-            Server.Transfer("~/Admin/lst_contenido_imagenes.aspx", False)
+            Server.Transfer("~/Admin/Contenido/lst_contenido_imagenes.aspx", False)
         ElseIf e.CommandName.Equals("Informacion") Then
-            Server.Transfer("~/Admin/lst_contenido_info.aspx", False)
+            Server.Transfer("~/Admin/Contenido/lst_contenido_info.aspx", False)
         ElseIf e.CommandName.Equals("Eliminar") Then
             Dim dumy As Integer = New ContenidoDAO().DelContenido(CInt(e.CommandArgument))
             gvDatos.PageIndex = 0

@@ -10,7 +10,7 @@
         <ul>
             <% For Each row As DataRow In CType(ViewData("ContenidoImagenes"), DataSet).Tables(0).Rows%>
             <li>
-                <%: Html.ProductImage(row("Url"))%>
+                <%: Html.ContenidoImagen(row("FileName"))%>
             </li>
             <% Next%>
         </ul> 

@@ -1,5 +1,6 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
+Imports ClubMovil.Utils
 
 
 Public Class lst_contenido_imagenes
@@ -42,7 +43,7 @@ Public Class lst_contenido_imagenes
 
         Try
             If fuImagen.HasFile Then
-                Dim newFileName As String = ContenidoImagenResolver.GetInstance().GetNewFileName(fuImagen.FileName)
+                Dim newFileName As String = ContenidoImagenUtils.GetNewFileName(fuImagen.FileName)
                 fuImagen.SaveAs(newFileName)
 
                 Dim dumy As Integer = New ContenidoDAO().AddContenidoImagen(IdContenido, newFileName)

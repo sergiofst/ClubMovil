@@ -2,6 +2,7 @@
 Imports System.Web.Services
 Imports System.IO
 Imports NLog
+Imports ClubMovil.Utils
 
 Public Class ContenidoResizeImagen
     Implements System.Web.IHttpHandler
@@ -10,9 +11,9 @@ Public Class ContenidoResizeImagen
     Private Shared Log As Logger = LogManager.GetCurrentClassLogger()
 
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
-        Dim filePath As String = ContenidoImagenResolver.GetInstance().ResolveFileName(context.Request("id"))
-        Dim largo As String = ContenidoImagenResolver.GetInstance().ResolveFileName(context.Request("h"))
-        Dim ancho As String = ContenidoImagenResolver.GetInstance().ResolveFileName(context.Request("w"))
+        Dim filePath As String = ContenidoImagenUtils.ResolveFileName(context.Request("id"))
+        Dim largo As String = ContenidoImagenUtils.ResolveFileName(context.Request("h"))
+        Dim ancho As String = ContenidoImagenUtils.ResolveFileName(context.Request("w"))
 
         If Log.IsDebugEnabled Then
             Log.Debug("FilePath: " & filePath)

@@ -211,7 +211,9 @@
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
     <Content Include="Controls\NavBarControl.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -420,7 +422,6 @@
     <Compile Include="Clases\Security\CMRoleProvider.vb" />
     <Compile Include="Clases\Utils\CompressViewState.vb" />
     <Compile Include="Clases\Utils\ConnectionStringHelper.vb" />
-    <Compile Include="Clases\Utils\ContenidoImagenResolver.vb" />
     <Compile Include="Clases\Utils\ContenidoArchivoResolver.vb" />
     <Compile Include="Clases\Utils\ErrorSummary.vb" />
     <Compile Include="Clases\Utils\ListUtils.vb" />
@@ -457,9 +458,9 @@
       <DependentUpon>NavBarControl.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Handlers\ContenidoImagen.ashx.vb">
-      <DependentUpon>ContenidoImagen.ashx</DependentUpon>
-    </Compile>
+    <Compile Include="Handlers\ContenidoImagen.ashx.vb" >
+		<DependentUpon>ContenidoImagen.ashx</DependentUpon>
+	</Compile>
     <Compile Include="Handlers\ContenidoResizeImagen.ashx.vb">
       <DependentUpon>ContenidoResizeImagen.ashx</DependentUpon>
     </Compile>
@@ -553,6 +554,14 @@
     <ProjectReference Include="..\ClubMovil.Data\ClubMovil.Data.vbproj">
       <Project>{B83BB2D1-2A9C-4049-A817-A3826D6316D5}</Project>
       <Name>ClubMovil.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClubMovil.Utils\ClubMovil.Utils.vbproj">
+      <Project>{67082900-C34D-4DB1-8423-D078E098F213}</Project>
+      <Name>ClubMovil.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClubMovil.Web\ClubMovil.Web.vbproj">
+      <Project>{8CE93BAF-558A-4DF1-964B-A8C1C06E96CB}</Project>
+      <Name>ClubMovil.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
