@@ -44,7 +44,9 @@ Public Class lst_contenido_imagenes
         Try
             If fuImagen.HasFile Then
                 Dim newFileName As String = ContenidoImagenUtils.GetNewFileName(fuImagen.FileName)
-                fuImagen.SaveAs(newFileName)
+                Dim newPath As String = ContenidoImagenUtils.ResolveFileName(newFileName)
+
+                fuImagen.SaveAs(newPath)
 
                 Dim dumy As Integer = New ContenidoDAO().AddContenidoImagen(IdContenido, newFileName)
 

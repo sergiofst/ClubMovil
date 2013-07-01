@@ -1,6 +1,8 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
 Imports Telcel.SIA
+Imports WURFL
+Imports ClubMovil.Utils
 
 Public Class ContenidoController
     Inherits BaseController
@@ -137,20 +139,47 @@ Public Class ContenidoController
         Dim transResponse As String = reqTransaction.getStatus(GetSIAUser(), GetSIAPassword(), CStr(id))
 
         ' Cobrado
-        If transResponse..Equals("0|4") Then
+        If transResponse.Equals("0|4") Then
             ' Guardo la descarga del archivo
             Dim drTransaccion As DataRow = New TransaccionDAO().GetTransaccionByTransactionId(id)
             Dim idDescarga As Integer = New DescargaDAO().AddDescarga(CInt(drTransaccion("IdContenido")), _
                                                                            CInt(drTransaccion("IdTransaccion")))
 
-            ' Entrego el contenido
-            Dim drContenido As DataRow = New ContenidoDAO().GetContenido(CInt(drTransaccion("IdContenido")))
+            Dim daoContenido As ContenidoDAO = New ContenidoDAO()
 
-            'return File(filename, contentType,"Report.pdf")
+            ' Entrego el contenido
+            Dim drContenido As DataRow = daoContenido.GetContenido(CInt(drTransaccion("IdContenido")))
+
+            ' Busco el grupo que le corresponde
+            Dim grupo As String = BuscaGrupo(CInt(drContenido("IdTipoContenido")))
+
+            Dim drContenidoArchivo As DataRow = daoContenido.GetContenidoArchivo(CInt(drContenido("IdContenido")), grupo)
+            Dim archivoPath As String = ContenidoArchivoUtils.ResolveFileName(CStr(drContenidoArchivo("Archivo")))
+
+            Return File(archivoPath, "application/octet-stream", CStr(drContenido("Archivo")))
         End If
 
 
         ' Entregar el contenido
+
+        Return Nothing
+    End Function
+
+    Private Function BuscaGrupo(ByVal tipoContenido As Integer) As String
+        Dim device As IDevice = GetDeviceInfo()
+
+        If tipoContenido = 3 Then
+            Dim width As Integer = Integer.Parse(device.GetCapability(""))
+            If width < 132 Then
+                Return "tiny"
+            ElseIf width < 176 Then
+                Return "small"
+            ElseIf width < 240 Then
+                Return "medium"
+            ElseIf width < 480 Then
+                Return "large"
+            End If
+        End If
 
         Return Nothing
     End Function

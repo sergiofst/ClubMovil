@@ -34,6 +34,8 @@ Public Class lst_contenido
             Server.Transfer("~/Admin/Contenido/lst_contenido_imagenes.aspx", False)
         ElseIf e.CommandName.Equals("Informacion") Then
             Server.Transfer("~/Admin/Contenido/lst_contenido_info.aspx", False)
+        ElseIf e.CommandName.Equals("Archivos") Then
+            Server.Transfer("~/Admin/Contenido/lst_contenido_archivos.aspx", False)
         ElseIf e.CommandName.Equals("Eliminar") Then
             Dim dumy As Integer = New ContenidoDAO().DelContenido(CInt(e.CommandArgument))
             gvDatos.PageIndex = 0

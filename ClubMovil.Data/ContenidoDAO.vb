@@ -189,17 +189,25 @@ Public Class ContenidoDAO
         Return CInt(ExecuteNonQuery(cmd))
     End Function
 
+    Public Function GetContenidoArchivo(ByVal idContenido As Integer, ByVal grupo As String) As DataRow
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenidoArchivo, IdContenido, Grupo, Archivo, Estatus FROM ContenidoArchivo WHERE IdContenido=@IdContenido AND Grupo=@Grupo AND Estatus=@Estatus")
+        AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
+        AddInParameter(cmd, "@Grupo", DbType.String, grupo)
+        AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
+        Return ExecuteDataRow(cmd)
+    End Function
+
     Public Function ListContenidoArchivos(ByVal idContenido As Integer) As DataSet
-        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenidoArchivo, IdContenido, Atributo, Archivo, Estatus FROM ContenidoArchivo WHERE IdContenido=@IdContenido AND Estatus=@Estatus")
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenidoArchivo, IdContenido, Grupo, Archivo, Estatus FROM ContenidoArchivo WHERE IdContenido=@IdContenido AND Estatus=@Estatus")
         AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
         AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
         Return ExecuteDataSet(cmd)
     End Function
 
-    Public Function AddContenidoArchivo(ByVal idContenido As Integer, ByVal atributo As String, ByVal archivo As String) As Integer
-        Dim cmd As DbCommand = GetSqlStringCommand("INSERT INTO ContenidoArchivo (IdContenido, Atributo, Archivo, Estatus) VALUES (@IdContenido,@Atributo,@Archivo,@Estatus)")
+    Public Function AddContenidoArchivo(ByVal idContenido As Integer, ByVal grupo As String, ByVal archivo As String) As Integer
+        Dim cmd As DbCommand = GetSqlStringCommand("INSERT INTO ContenidoArchivo (IdContenido, Grupo, Archivo, Estatus) VALUES (@IdContenido,@Grupo,@Archivo,@Estatus)")
         AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
-        AddInParameter(cmd, "@Atributo", DbType.String, atributo)
+        AddInParameter(cmd, "@Grupo", DbType.String, grupo)
         AddInParameter(cmd, "@Archivo", DbType.String, archivo)
         AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
         Return ExecuteNonQueryIdentity(cmd)

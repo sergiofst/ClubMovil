@@ -30,7 +30,8 @@ Public Class BaseController
     End Function
 
     Public Function GetDeviceInfo() As IDevice
-        Return MvcApplication.GetWurflManager.GetDeviceForRequest(Me.Request.UserAgent)
+        Return MvcApplication.GetWurflManager.GetDeviceForRequest("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3")
+        ' Return MvcApplication.GetWurflManager.GetDeviceForRequest(Me.Request.UserAgent)
     End Function
 
 End Class

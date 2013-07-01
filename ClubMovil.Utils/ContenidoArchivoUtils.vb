@@ -1,8 +1,8 @@
 ﻿Imports System.IO
 Imports System.Configuration
 
-Public Class ContenidoImagenUtils
-    Const CONFIG_KEY As String = "Imagenes.Directorio"
+Public Class ContenidoArchivoUtils
+    Const CONFIG_KEY As String = "Archivos.Directorio"
 
     Public Shared Function GetNewFileName(ByVal fileName As String) As String
         Dim pathBase As String = ConfigurationManager.AppSettings(CONFIG_KEY)

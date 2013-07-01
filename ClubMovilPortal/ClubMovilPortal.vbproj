@@ -170,6 +170,7 @@
     <Compile Include="Helpers\MenuHelper.vb" />
     <Compile Include="Helpers\ContenidoHelper.vb" />
     <Compile Include="Helpers\BaseHelper.vb" />
+    <Compile Include="Models\Contenido\ContenidoArchivoProveedor.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -290,7 +291,6 @@
   <ItemGroup>
     <Folder Include="App_Browsers\Devices\" />
     <Folder Include="Content\Product\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />

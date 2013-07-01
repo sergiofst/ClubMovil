@@ -1,5 +1,6 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
+Imports ClubMovil.Utils
 
 
 Public Class lst_contenido_archivos
@@ -58,17 +59,18 @@ Public Class lst_contenido_archivos
         End If
     End Sub
 
-    Private Sub btnAgregarArchivo_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAgregarArchivo.Click
+    Private Sub btnAgregar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnAgregar.Click
         If Not IsValid Then
             Return
         End If
 
         Try
             If fuArchivo.HasFile Then
-                Dim newFileName As String = ContenidoArchivoResolver.GetInstance().GetNewFileName(fuArchivo.FileName)
-                fuArchivo.SaveAs(newFileName)
+                Dim newFileName As String = ContenidoImagenUtils.GetNewFileName(fuArchivo.FileName)
+                Dim newPath As String = ContenidoImagenUtils.ResolveFileName(newFileName)
+                fuArchivo.SaveAs(newPath)
 
-                Dim dumy As Integer = New ContenidoDAO().AddContenidoArchivo(IdContenido, tbNuevoAtributo.Text, newFileName)
+                Dim dumy As Integer = New ContenidoDAO().AddContenidoArchivo(IdContenido, tbNuevoGrupo.Text, newFileName)
 
                 gvDatos.PageIndex = 0
                 gvDatos.DataSource = GetDatos()
