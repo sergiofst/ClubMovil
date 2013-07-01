@@ -27,9 +27,6 @@ Public Class upd_contenido
         tbImagen.Text = CStr(drCategoria("Imagen"))
         chkVisible.Checked = CBool(drCategoria("Visible"))
 
-        ddlTipoContenido.DataSource = daoContenido.ListTipoContenido()
-        ddlTipoContenido.DataBind()
-
         ddlTipoContenido.SelectedValue = CStr(drCategoria("IdTipoContenido"))
     End Sub
 
@@ -55,7 +52,7 @@ Public Class upd_contenido
 
             Dim daoContenido As ContenidoDAO = New ContenidoDAO()
 
-            daoContenido.UpdContenido(CInt(ddlTipoContenido.SelectedValue), _
+            daoContenido.UpdContenido(CType(ddlTipoContenido.SelectedValue, ContenidoDAO.TipoContenido), _
                                       tbNombre.Text, _
                                       tbDescripcion.Text, _
                                       tbImagen.Text, _

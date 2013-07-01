@@ -12,9 +12,9 @@ Public Class MenuController
         If Log.IsDebugEnabled Then
             Log.Debug(GetDeviceInfo().NormalizedUserAgent)
         End If
-        For Each key As String In GetDeviceInfo().GetCapabilities().Keys
-            Log.Debug(key & ":" & GetDeviceInfo().GetCapabilities(key))
-        Next
+        'For Each key As String In GetDeviceInfo().GetCapabilities().Keys
+        '    Log.Debug(key & ":" & GetDeviceInfo().GetCapabilities(key))
+        'Next
         If Log.IsDebugEnabled Then
             Log.Debug("Iniciando peticion...")
         End If

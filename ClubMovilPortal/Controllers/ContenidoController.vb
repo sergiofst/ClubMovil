@@ -1,8 +1,9 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
 Imports Telcel.SIA
-Imports WURFL
+Imports Wurfl
 Imports ClubMovil.Utils
+Imports System.IO
 
 Public Class ContenidoController
     Inherits BaseController
@@ -35,11 +36,12 @@ Public Class ContenidoController
         Dim drSuscripcion As DataRow = (New SuscripcionDAO().GetSuscripcionByTelefono(GetMSISDN()))
 
         ' Busco el tipo de contenido 
-        Dim drTipoContenido As DataRow = New ContenidoDAO().GetTipoContenido(CInt(drContenido("IdTipoContenido")))
-        Dim srsRatingId As Integer = CInt(drTipoContenido("SRSRatingId"))
+        Dim tipoContenido As Integer = CInt(drContenido("TipoContenido"))
+        Dim srsRatingId As Integer = CInt(ConfigurationManager.AppSettings("TipoContenido.SRSRatingId." & tipoContenido))
+        Dim creditos As Integer = CInt(ConfigurationManager.AppSettings("TipoContenido.Creditos." & tipoContenido))
 
         ' Si no tiene suficientes creditos
-        If CInt(drSuscripcion("Creditos")) < CInt(drTipoContenido("Creditos")) Then
+        If CInt(drSuscripcion("Creditos")) < creditos Then
             ' Redirecciono a la pagina para comprar mas creditos
             Return Me.RedirectToAction("Index", "Creditos", New With {.id = id})
         End If
@@ -133,10 +135,18 @@ Public Class ContenidoController
     End Function
 
     Public Function Download(ByVal id As String) As FileResult
+        If Log.IsDebugEnabled Then
+            Log.Debug("Descarga de contenido: " & id)
+        End If
+
         ' Verificar el cobro
         Dim reqTransaction As TransactionService = New TransactionService(ConfigurationManager.AppSettings("SIA.TransactionService"))
 
         Dim transResponse As String = reqTransaction.getStatus(GetSIAUser(), GetSIAPassword(), CStr(id))
+
+        If Log.IsDebugEnabled Then
+            Log.Debug(transResponse)
+        End If
 
         ' Cobrado
         If transResponse.Equals("0|4") Then
@@ -150,13 +160,24 @@ Public Class ContenidoController
             ' Entrego el contenido
             Dim drContenido As DataRow = daoContenido.GetContenido(CInt(drTransaccion("IdContenido")))
 
+            Dim tipoContenido As Integer = CInt(drContenido("TipoContenido"))
+            Dim directorio As String = CStr(ConfigurationManager.AppSettings("TipoContenido.Archivos.Directorio." & tipoContenido))
+
             ' Busco el grupo que le corresponde
-            Dim grupo As String = BuscaGrupo(CInt(drContenido("IdTipoContenido")))
+            Dim grupo As String = BuscaGrupo(tipoContenido)
 
             Dim drContenidoArchivo As DataRow = daoContenido.GetContenidoArchivo(CInt(drContenido("IdContenido")), grupo)
-            Dim archivoPath As String = ContenidoArchivoUtils.ResolveFileName(CStr(drContenidoArchivo("Archivo")))
+            Dim archivoPath As String = Path.Combine(directorio, CStr(drContenidoArchivo("Archivo")))
 
-            Return File(archivoPath, "application/octet-stream", CStr(drContenido("Archivo")))
+            If Log.IsDebugEnabled Then
+                Log.Debug("Archivo: " & archivoPath)
+            End If
+
+            Return File(archivoPath, "application/octet-stream", CStr(drContenidoArchivo("Archivo")))
+        Else
+            If Log.IsErrorEnabled Then
+                Log.Error(transResponse)
+            End If
         End If
 
 
@@ -168,8 +189,8 @@ Public Class ContenidoController
     Private Function BuscaGrupo(ByVal tipoContenido As Integer) As String
         Dim device As IDevice = GetDeviceInfo()
 
-        If tipoContenido = 3 Then
-            Dim width As Integer = Integer.Parse(device.GetCapability(""))
+        If tipoContenido = CInt(ConfigurationManager.AppSettings("TipoContenido.Imagenes")) Then
+            Dim width As Integer = Integer.Parse(device.GetCapability("resolution_width"))
             If width < 132 Then
                 Return "tiny"
             ElseIf width < 176 Then

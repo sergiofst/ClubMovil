@@ -5,7 +5,7 @@ Public Class ContenidoDAO
     Inherits BaseDAO
 
     Public Function ListContenido() As DataSet
-        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenido, IdServicio, Nombre, Descripcion, Imagen, Orden, Visible, Estatus FROM Contenido WHERE Estatus=@Estatus AND Visible=@Visible")
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenido, tipoContenido, Nombre, Descripcion, Imagen, Orden, Visible, Estatus FROM Contenido WHERE Estatus=@Estatus AND Visible=@Visible")
         AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
         AddInParameter(cmd, "@Visible", DbType.Boolean, True)
         Return ExecuteDataSet(cmd)
@@ -14,7 +14,7 @@ Public Class ContenidoDAO
     Public Function ListContenidoByCategoria(ByVal idCategoria As Integer) As DataSet
         Dim query As StringBuilder = New StringBuilder
         With query
-            .Append("SELECT A.IdContenido, A.IdServicio, A.Nombre, A.Descripcion, A.Imagen, A.Orden, A.Visible, B.IdCategoria ")
+            .Append("SELECT A.IdContenido, A.tipoContenido, A.Nombre, A.Descripcion, A.Imagen, A.Orden, A.Visible, B.IdCategoria ")
             .Append("FROM Contenido AS A INNER JOIN ContenidoCategoria AS B ON (A.IdContenido=B.IdContenido) ")
             .Append("WHERE B.IdCategoria=@IdCategoria AND A.Estatus=@Estatus AND B.Estatus=@Estatus ")
         End With
@@ -24,10 +24,8 @@ Public Class ContenidoDAO
         Return ExecuteDataSet(cmd)
     End Function
 
-
-
     Public Function GetContenido(ByVal idContenido As Integer) As DataRow
-        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenido, IdServicio, IdTipoContenido, Nombre, Descripcion, Imagen, Orden, Visible, Estatus FROM Contenido WHERE IdContenido=@IdContenido")
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenido, tipoContenido, Nombre, Descripcion, Imagen, Orden, Visible, Estatus FROM Contenido WHERE IdContenido=@IdContenido")
         AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
         Return ExecuteDataRow(cmd)
     End Function
@@ -44,11 +42,11 @@ Public Class ContenidoDAO
         Return ExecuteDataSet(cmd)
     End Function
 
-    Public Function GetTipoContenido(ByVal idTipoContenido As Integer) As DataRow
-        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdTipoContenido,Nombre,Creditos,SRSRatingId,Estatus FROM TipoContenido WHERE IdTipoContenido=@IdTipoContenido")
-        AddInParameter(cmd, "@IdTipoContenido", DbType.Int32, idTipoContenido)
-        Return ExecuteDataRow(cmd)
-    End Function
+    'Public Function GetTipoContenido(ByVal idTipoContenido As Integer) As DataRow
+    '    Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdTipoContenido,Nombre,Creditos,SRSRatingId,Estatus FROM TipoContenido WHERE IdTipoContenido=@IdTipoContenido")
+    '    AddInParameter(cmd, "@IdTipoContenido", DbType.Int32, idTipoContenido)
+    '    Return ExecuteDataRow(cmd)
+    'End Function
 
     Public Function ListCategorias() As DataSet
         Dim query As StringBuilder = New StringBuilder
@@ -84,9 +82,9 @@ Public Class ContenidoDAO
         Return CInt(ExecuteNonQuery(cmd))
     End Function
 
-    Public Function AddContenido(ByVal idTipoContenido As Integer, ByVal nombre As String, ByVal descripcion As String, ByVal imagen As String, ByVal orden As Integer, ByVal visible As Boolean) As Integer
-        Dim cmd As DbCommand = GetSqlStringCommand("INSERT INTO Contenido (IdTipoContenido,Nombre,Descripcion,Imagen,Orden,Visible,Estatus) VALUES (@IdTipoContenido,@Nombre,@Descripcion,@Imagen,@Orden,@Visible,@Estatus)")
-        AddInParameter(cmd, "@IdTipoContenido", DbType.Int32, True)
+    Public Function AddContenido(ByVal tipoCont As TipoContenido, ByVal nombre As String, ByVal descripcion As String, ByVal imagen As String, ByVal orden As Integer, ByVal visible As Boolean) As Integer
+        Dim cmd As DbCommand = GetSqlStringCommand("INSERT INTO Contenido (TipoContenido,Nombre,Descripcion,Imagen,Orden,Visible,Estatus) VALUES (@TipoContenido,@Nombre,@Descripcion,@Imagen,@Orden,@Visible,@Estatus)")
+        AddInParameter(cmd, "@TipoContenido", DbType.Int32, CInt(tipoCont))
         AddInParameter(cmd, "@Nombre", DbType.String, nombre)
         AddInParameter(cmd, "@Descripcion", DbType.String, descripcion)
         AddInParameter(cmd, "@Imagen", DbType.String, imagen)
@@ -96,10 +94,10 @@ Public Class ContenidoDAO
         Return ExecuteNonQueryIdentity(cmd)
     End Function
 
-    Public Function UpdContenido(ByVal idTipoContenido As Integer, ByVal nombre As String, ByVal descripcion As String, ByVal imagen As String, ByVal orden As Integer, ByVal visible As Boolean, ByVal idContenido As Integer) As Integer
-        Dim cmd As DbCommand = GetSqlStringCommand("UPDATE Contenido IdTipoContenido=@IdTipoContenido,Nombre=@Nombre,Descripcion=@Descripcion,Orden=@Orden,Visible=@Visible WHERE IdContenido=@IdContenido")
+    Public Function UpdContenido(ByVal tipoCont As TipoContenido, ByVal nombre As String, ByVal descripcion As String, ByVal imagen As String, ByVal orden As Integer, ByVal visible As Boolean, ByVal idContenido As Integer) As Integer
+        Dim cmd As DbCommand = GetSqlStringCommand("UPDATE Contenido TipoContenido=@TipoContenido,Nombre=@Nombre,Descripcion=@Descripcion,Orden=@Orden,Visible=@Visible WHERE IdContenido=@IdContenido")
         AddInParameter(cmd, "@IdContenido", DbType.Int32, idContenido)
-        AddInParameter(cmd, "@IdTipoContenido", DbType.Int32, idTipoContenido)
+        AddInParameter(cmd, "@TipoContenido", DbType.Int32, CInt(tipoCont))
         AddInParameter(cmd, "@Nombre", DbType.String, nombre)
         AddInParameter(cmd, "@Descripcion", DbType.String, descripcion)
         AddInParameter(cmd, "@Imagen", DbType.String, imagen)
@@ -116,11 +114,11 @@ Public Class ContenidoDAO
         Return CInt(ExecuteNonQuery(cmd))
     End Function
 
-    Public Function ListTipoContenido() As DataSet
-        Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdTipoContenido,Nombre,Descripcion,Imagen,Orden,Visible FROM TipoContenido WHERE Estatus=@Estatus")
-        AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
-        Return ExecuteDataSet(cmd)
-    End Function
+    'Public Function ListTipoContenido() As DataSet
+    '    Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdTipoContenido,Nombre,Descripcion,Imagen,Orden,Visible FROM TipoContenido WHERE Estatus=@Estatus")
+    '    AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
+    '    Return ExecuteDataSet(cmd)
+    'End Function
 
     Public Function ListContenidoClaves(ByVal idContenido As Integer) As DataSet
         Dim cmd As DbCommand = GetSqlStringCommand("SELECT IdContenidoClave,IdContenido,Clave FROM ContenidoClave WHERE IdContenido=@IdContenido AND Estatus=@Estatus")
@@ -259,6 +257,12 @@ Public Class ContenidoDAO
         End If
         Return True
     End Function
+
+    Public Enum TipoContenido
+        Imagenes = 0
+        Tonos = 1
+        Videos = 2
+    End Enum
 
 
 End Class

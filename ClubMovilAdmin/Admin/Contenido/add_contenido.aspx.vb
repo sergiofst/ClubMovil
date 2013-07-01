@@ -10,10 +10,6 @@ Public Class add_contenido
         If IsPostBack Then
             Return
         End If
-
-        ddlTipoContenido.DataSource = New ContenidoDAO().ListTipoContenido()
-        ddlTipoContenido.DataBind()
-
     End Sub
 
     Private Sub btnRegresar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRegresar.Click
@@ -28,7 +24,7 @@ Public Class add_contenido
         Try
             Dim daoContenido As ContenidoDAO = New ContenidoDAO()
 
-            daoContenido.AddContenido(CInt(ddlTipoContenido.SelectedValue), _
+            daoContenido.AddContenido(CType(ddlTipoContenido.SelectedValue, ContenidoDAO.TipoContenido), _
                                       tbNombre.Text, _
                                         tbDescripcion.Text, _
                                         tbImagen.Text, _

@@ -10,7 +10,7 @@ Public Class ContenidoImagen
     Private Shared Log As Logger = LogManager.GetCurrentClassLogger()
 
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
-        Dim filePath As String = ContenidoImagenUtils.ResolveFileName(context.Request("id"))
+        Dim filePath As String = Path.Combine(ConfigurationManager.AppSettings("TipoContenido.Archivos.Imagenes"), context.Request("id"))
 
         If Log.IsDebugEnabled Then
             Log.Debug("FilePath: " & filePath)
