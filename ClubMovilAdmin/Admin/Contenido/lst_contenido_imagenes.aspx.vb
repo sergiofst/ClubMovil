@@ -1,6 +1,7 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
 Imports ClubMovil.Utils
+Imports System.IO
 
 
 Public Class lst_contenido_imagenes
@@ -43,8 +44,10 @@ Public Class lst_contenido_imagenes
 
         Try
             If fuImagen.HasFile Then
-                Dim newFileName As String = ContenidoImagenUtils.GetNewFileName(fuImagen.FileName)
-                Dim newPath As String = ContenidoImagenUtils.ResolveFileName(newFileName)
+                Dim contenidoImagenesDir As String = New PropiedadDAO().GetPropiedad("ContenidoImagen.Dir")
+
+                Dim newFileName As String = ContenidoUtils.GetRandomFileName(fuImagen.FileName)
+                Dim newPath As String = Path.Combine(contenidoImagenesDir, newFileName)
 
                 fuImagen.SaveAs(newPath)
 

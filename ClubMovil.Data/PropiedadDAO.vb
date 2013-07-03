@@ -15,4 +15,16 @@ Public Class PropiedadDAO
         Return Nothing
     End Function
 
+    Public Function ListPropiedades(ByVal nombre As String) As String()
+        Dim cmd As DbCommand = GetSqlStringCommand("SELECT Valor FROM Propiedad WHERE Nombre=@Nombre AND Estatus=@Estatus")
+        AddInParameter(cmd, "@Nombre", DbType.String, nombre)
+        AddInParameter(cmd, "@Estatus", DbType.Boolean, True)
+        Dim dsProperties As DataSet = ExecuteDataSet(cmd)
+        Dim result As List(Of String) = New List(Of String)
+        For Each drRow As DataRow In dsProperties.Tables(0).Rows
+            result.Add(CStr(drRow("Valor")))
+        Next
+        Return result.ToArray
+    End Function
+
 End Class

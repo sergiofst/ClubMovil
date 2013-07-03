@@ -1,33 +1,33 @@
 ﻿Imports System.Web
 Imports System.Web.Services
-Imports System.IO
 Imports NLog
-Imports ClubMovil.Utils
 Imports ClubMovil.Data
+Imports System.IO
 
-Public Class ContenidoImagen
+Public Class ContenidoFondo
     Implements System.Web.IHttpHandler
 
     Private Shared Log As Logger = LogManager.GetCurrentClassLogger()
 
     Sub ProcessRequest(ByVal context As HttpContext) Implements IHttpHandler.ProcessRequest
-        Dim contenidoImagenDir As String = New PropiedadDAO().GetPropiedad("ContenidoImagen.Dir")
         Dim archivo As String = context.Request("id")
 
-        Dim filePath As String = Path.Combine(contenidoImagenDir, archivo)
+        Dim contenidoFondoDir As String = New PropiedadDAO().GetPropiedad("ContenidoFondo.Dir")
+
+        Dim archivoPath As String = Path.Combine(contenidoFondoDir, archivo)
 
         If Log.IsDebugEnabled Then
-            Log.Debug("FilePath: " & filePath)
+            Log.Debug("Archivo: " & archivoPath)
         End If
 
-        If Not File.Exists(filePath) Then
+        If Not File.Exists(archivoPath) Then
             context.Response.StatusCode = 404
             Return
         End If
 
         context.Response.ContentType = "application/octet-stream"
         context.Response.AddHeader("content-disposition", "attachment; filename='" & archivo & "'")
-        context.Response.WriteFile(filePath)
+        context.Response.WriteFile(archivoPath)
         context.Response.Flush()
         context.Response.End()
 

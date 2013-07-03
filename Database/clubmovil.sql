@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : Localhost
-Source Server Version : 50612
+Source Server Version : 50531
 Source Host           : localhost:3306
 Source Database       : clubmovil
 
 Target Server Type    : MYSQL
-Target Server Version : 50612
+Target Server Version : 50531
 File Encoding         : 65001
 
-Date: 2013-07-01 17:21:34
+Date: 2013-07-03 00:02:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -44,7 +44,7 @@ DROP TABLE IF EXISTS `contenido`;
 CREATE TABLE `contenido` (
   `IdContenido` int(11) NOT NULL AUTO_INCREMENT,
   `IdServicio` int(11) NOT NULL,
-  `TipoContenido` int(11) NOT NULL,
+  `IdTipoContenido` int(11) NOT NULL,
   `Nombre` varchar(250) NOT NULL,
   `Descripcion` varchar(512) NOT NULL,
   `Imagen` varchar(150) NOT NULL,
@@ -64,10 +64,10 @@ INSERT INTO `contenido` VALUES ('4', '1', '1', 'Mariel 01', 'Mariel 01', 'img/de
 INSERT INTO `contenido` VALUES ('5', '1', '1', 'Mariel 02', 'Mariel 02', 'img/default.jpg', '0', '', '');
 
 -- ----------------------------
--- Table structure for `contenidoarchivo`
+-- Table structure for `contenido_archivo`
 -- ----------------------------
-DROP TABLE IF EXISTS `contenidoarchivo`;
-CREATE TABLE `contenidoarchivo` (
+DROP TABLE IF EXISTS `contenido_archivo`;
+CREATE TABLE `contenido_archivo` (
   `IdContenidoArchivo` int(11) NOT NULL AUTO_INCREMENT,
   `IdContenido` int(11) NOT NULL,
   `Grupo` varchar(256) NOT NULL,
@@ -77,19 +77,19 @@ CREATE TABLE `contenidoarchivo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of contenidoarchivo
+-- Records of contenido_archivo
 -- ----------------------------
-INSERT INTO `contenidoarchivo` VALUES ('1', '1', 'tiny', 'wwi5k5iy.jpg', '');
-INSERT INTO `contenidoarchivo` VALUES ('2', '1', 'small', '54qijrug.jpg', '');
-INSERT INTO `contenidoarchivo` VALUES ('3', '1', 'medium', 'orpfv5tq.jpg', '');
-INSERT INTO `contenidoarchivo` VALUES ('4', '1', 'large', 'ts3toud1.jpg', '');
-INSERT INTO `contenidoarchivo` VALUES ('5', '2', 'mp3', 'test01.mp3', '');
+INSERT INTO `contenido_archivo` VALUES ('1', '1', 'tiny', 'wwi5k5iy.jpg', '');
+INSERT INTO `contenido_archivo` VALUES ('2', '1', 'small', '54qijrug.jpg', '');
+INSERT INTO `contenido_archivo` VALUES ('3', '1', 'medium', 'orpfv5tq.jpg', '');
+INSERT INTO `contenido_archivo` VALUES ('4', '1', 'large', 'ts3toud1.jpg', '');
+INSERT INTO `contenido_archivo` VALUES ('5', '2', 'mp3', 'test01.mp3', '');
 
 -- ----------------------------
--- Table structure for `contenidocategoria`
+-- Table structure for `contenido_categoria`
 -- ----------------------------
-DROP TABLE IF EXISTS `contenidocategoria`;
-CREATE TABLE `contenidocategoria` (
+DROP TABLE IF EXISTS `contenido_categoria`;
+CREATE TABLE `contenido_categoria` (
   `IdContenidoCategoria` int(11) NOT NULL AUTO_INCREMENT,
   `IdContenido` int(11) NOT NULL,
   `IdCategoria` int(11) NOT NULL,
@@ -98,22 +98,22 @@ CREATE TABLE `contenidocategoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of contenidocategoria
+-- Records of contenido_categoria
 -- ----------------------------
-INSERT INTO `contenidocategoria` VALUES ('1', '1', '1', '');
-INSERT INTO `contenidocategoria` VALUES ('2', '2', '1', '');
-INSERT INTO `contenidocategoria` VALUES ('3', '3', '2', '');
-INSERT INTO `contenidocategoria` VALUES ('20', '4', '3', '');
-INSERT INTO `contenidocategoria` VALUES ('21', '5', '3', '');
-INSERT INTO `contenidocategoria` VALUES ('22', '1', '2', '');
-INSERT INTO `contenidocategoria` VALUES ('23', '1', '3', '');
-INSERT INTO `contenidocategoria` VALUES ('24', '1', '1', '');
+INSERT INTO `contenido_categoria` VALUES ('1', '1', '1', '');
+INSERT INTO `contenido_categoria` VALUES ('2', '2', '1', '');
+INSERT INTO `contenido_categoria` VALUES ('3', '3', '2', '');
+INSERT INTO `contenido_categoria` VALUES ('20', '4', '3', '');
+INSERT INTO `contenido_categoria` VALUES ('21', '5', '3', '');
+INSERT INTO `contenido_categoria` VALUES ('22', '1', '2', '');
+INSERT INTO `contenido_categoria` VALUES ('23', '1', '3', '');
+INSERT INTO `contenido_categoria` VALUES ('24', '1', '1', '');
 
 -- ----------------------------
--- Table structure for `contenidoclave`
+-- Table structure for `contenido_clave`
 -- ----------------------------
-DROP TABLE IF EXISTS `contenidoclave`;
-CREATE TABLE `contenidoclave` (
+DROP TABLE IF EXISTS `contenido_clave`;
+CREATE TABLE `contenido_clave` (
   `IdContenidoClave` int(11) NOT NULL AUTO_INCREMENT,
   `IdContenido` int(11) NOT NULL,
   `Clave` varchar(250) NOT NULL,
@@ -122,16 +122,38 @@ CREATE TABLE `contenidoclave` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of contenidoclave
+-- Records of contenido_clave
 -- ----------------------------
-INSERT INTO `contenidoclave` VALUES ('1', '1', 'Fondo01', '\0');
-INSERT INTO `contenidoclave` VALUES ('2', '1', 'Fondo001', '\0');
+INSERT INTO `contenido_clave` VALUES ('1', '1', 'Fondo01', '\0');
+INSERT INTO `contenido_clave` VALUES ('2', '1', 'Fondo001', '\0');
 
 -- ----------------------------
--- Table structure for `contenidoimagen`
+-- Table structure for `contenido_fondo`
 -- ----------------------------
-DROP TABLE IF EXISTS `contenidoimagen`;
-CREATE TABLE `contenidoimagen` (
+DROP TABLE IF EXISTS `contenido_fondo`;
+CREATE TABLE `contenido_fondo` (
+  `IdContenidoFondo` int(11) NOT NULL AUTO_INCREMENT,
+  `IdContenido` int(11) NOT NULL,
+  `AnchoImagen` int(11) NOT NULL,
+  `Archivo` varchar(250) NOT NULL,
+  `Estatus` bit(1) NOT NULL,
+  PRIMARY KEY (`IdContenidoFondo`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contenido_fondo
+-- ----------------------------
+INSERT INTO `contenido_fondo` VALUES ('1', '1', '240', 'k2mcxhqg.jpg', '');
+INSERT INTO `contenido_fondo` VALUES ('2', '1', '176', '13t4mb4c.jpg', '');
+INSERT INTO `contenido_fondo` VALUES ('3', '1', '176', '5tb3c03u.jpg', '');
+INSERT INTO `contenido_fondo` VALUES ('4', '1', '176', 'jw2zpgb1.jpg', '');
+INSERT INTO `contenido_fondo` VALUES ('5', '1', '176', 'kv25mevj.jpg', '');
+
+-- ----------------------------
+-- Table structure for `contenido_imagen`
+-- ----------------------------
+DROP TABLE IF EXISTS `contenido_imagen`;
+CREATE TABLE `contenido_imagen` (
   `IdContenidoImagen` int(11) NOT NULL AUTO_INCREMENT,
   `IdContenido` int(11) NOT NULL,
   `FileName` varchar(150) NOT NULL,
@@ -140,19 +162,19 @@ CREATE TABLE `contenidoimagen` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of contenidoimagen
+-- Records of contenido_imagen
 -- ----------------------------
-INSERT INTO `contenidoimagen` VALUES ('1', '1', 'sjtxrx3d.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('2', '1', 'iya2fptn.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('3', '1', 'znrncun5.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('4', '1', 'i3n003gp.jpg', '');
-INSERT INTO `contenidoimagen` VALUES ('5', '1', 'pvhxowgy.jpg', '');
+INSERT INTO `contenido_imagen` VALUES ('1', '1', 'sjtxrx3d.jpg', '');
+INSERT INTO `contenido_imagen` VALUES ('2', '1', 'iya2fptn.jpg', '');
+INSERT INTO `contenido_imagen` VALUES ('3', '1', 'znrncun5.jpg', '');
+INSERT INTO `contenido_imagen` VALUES ('4', '1', 'i3n003gp.jpg', '');
+INSERT INTO `contenido_imagen` VALUES ('5', '1', 'pvhxowgy.jpg', '');
 
 -- ----------------------------
--- Table structure for `contenidoinfo`
+-- Table structure for `contenido_info`
 -- ----------------------------
-DROP TABLE IF EXISTS `contenidoinfo`;
-CREATE TABLE `contenidoinfo` (
+DROP TABLE IF EXISTS `contenido_info`;
+CREATE TABLE `contenido_info` (
   `IdContenidoInfo` int(11) NOT NULL AUTO_INCREMENT,
   `IdContenido` int(11) NOT NULL,
   `Etiqueta` varchar(255) NOT NULL,
@@ -163,10 +185,27 @@ CREATE TABLE `contenidoinfo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
--- Records of contenidoinfo
+-- Records of contenido_info
 -- ----------------------------
-INSERT INTO `contenidoinfo` VALUES ('1', '1', 'Descripcion', 'Esta es la descripcion del contenido', '', '');
-INSERT INTO `contenidoinfo` VALUES ('2', '1', 'Autor', 'Este es el autor del contenido', '', '');
+INSERT INTO `contenido_info` VALUES ('1', '1', 'Descripcion', 'Esta es la descripcion del contenido', '', '');
+INSERT INTO `contenido_info` VALUES ('2', '1', 'Autor', 'Este es el autor del contenido', '', '');
+
+-- ----------------------------
+-- Table structure for `contenido_tono`
+-- ----------------------------
+DROP TABLE IF EXISTS `contenido_tono`;
+CREATE TABLE `contenido_tono` (
+  `IdContenidoTono` int(11) NOT NULL AUTO_INCREMENT,
+  `IdContenido` int(11) NOT NULL,
+  `Formato` varchar(50) NOT NULL,
+  `Archivo` varchar(250) NOT NULL,
+  `Estatus` bit(1) NOT NULL,
+  PRIMARY KEY (`IdContenidoTono`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of contenido_tono
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `descarga`
@@ -258,7 +297,7 @@ CREATE TABLE `propiedad` (
   `Valor` varchar(512) NOT NULL,
   `Estatus` bit(1) NOT NULL,
   PRIMARY KEY (`IdPropiedad`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of propiedad
@@ -266,6 +305,11 @@ CREATE TABLE `propiedad` (
 INSERT INTO `propiedad` VALUES ('1', 'SRSRatingId.TipoContenido.1', '1', '');
 INSERT INTO `propiedad` VALUES ('2', 'SRSRatingId.TipoContenido.2', '1', '');
 INSERT INTO `propiedad` VALUES ('3', 'SRSRatingId.TipoContenido.3', '1', '');
+INSERT INTO `propiedad` VALUES ('4', 'ContenidoFondo.Dir', 'C:\\Develop\\ClubMovil\\Contenido\\ContenidoFondo', '');
+INSERT INTO `propiedad` VALUES ('5', 'ContenidoTono.Dir', 'C:\\Develop\\ClubMovil\\Contenido\\ContenidoTono', '');
+INSERT INTO `propiedad` VALUES ('6', 'ContenidoFondo.AnchoImagenes', '176', '');
+INSERT INTO `propiedad` VALUES ('7', 'ContenidoFondo.AnchoImagenes', '240', '');
+INSERT INTO `propiedad` VALUES ('8', 'ContenidoImagen.Dir', 'C:\\Develop\\ClubMovil\\Contenido\\Imagenes', '');
 
 -- ----------------------------
 -- Table structure for `resolution`
@@ -5296,7 +5340,7 @@ CREATE TABLE `tipocontenido` (
 -- ----------------------------
 -- Records of tipocontenido
 -- ----------------------------
-INSERT INTO `tipocontenido` VALUES ('1', 'Imagenes', '0', '1', '');
+INSERT INTO `tipocontenido` VALUES ('1', 'Fondo', '0', '1', '');
 INSERT INTO `tipocontenido` VALUES ('2', 'Tonos', '0', '2', '');
 INSERT INTO `tipocontenido` VALUES ('3', 'Videos', '0', '3', '');
 

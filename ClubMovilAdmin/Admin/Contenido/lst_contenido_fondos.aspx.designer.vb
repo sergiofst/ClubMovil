@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class lst_contenido_archivos
+Partial Public Class lst_contenido_fondos
 
     '''<summary>
     '''Label4 control.
@@ -23,22 +23,13 @@ Partial Public Class lst_contenido_archivos
     Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''tbNuevoGrupo control.
+    '''ddlAnchoImagen control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbNuevoGrupo As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ddlAnchoImagen As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Label3 control.

@@ -10,10 +10,13 @@ Public Class add_contenido
         If IsPostBack Then
             Return
         End If
+
+        ddlTipoContenido.DataSource = New ContenidoDAO().ListTipoContenido()
+        ddlTipoContenido.DataBind()
     End Sub
 
     Private Sub btnRegresar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnRegresar.Click
-        Response.Redirect("~/Admin/lst_contenidos.aspx", True)
+        Response.Redirect("~/Admin/Contenido/lst_contenidos.aspx", True)
     End Sub
 
     Private Sub btnGuardar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnGuardar.Click

@@ -1,9 +1,9 @@
 ﻿Imports ClubMovil.Data
 Imports NLog
 Imports ClubMovil.Utils
+Imports System.IO
 
-
-Public Class lst_contenido_archivos
+Public Class lst_contenido_fondos
     Inherits BasePage
 
     Private Shared Log As Logger = LogManager.GetCurrentClassLogger()
@@ -21,6 +21,10 @@ Public Class lst_contenido_archivos
 
         gvDatos.DataSource = GetDatos()
         gvDatos.DataBind()
+
+        ddlAnchoImagen.DataSource = New PropiedadDAO().ListPropiedades("ContenidoFondo.AnchoImagenes")
+        ddlAnchoImagen.DataBind()
+
     End Sub
 
     Private Property IdContenido() As Integer
@@ -33,7 +37,7 @@ Public Class lst_contenido_archivos
     End Property
 
     Private Function GetDatos() As DataView
-        Return New ContenidoDAO().ListContenidoArchivos(IdContenido).Tables(0).DefaultView
+        Return New ContenidoFondoDAO().ListContenidoFondo(IdContenido).Tables(0).DefaultView
     End Function
 
     Private Sub gvDatos_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles gvDatos.PageIndexChanging
@@ -43,9 +47,9 @@ Public Class lst_contenido_archivos
     End Sub
 
     Private Sub gvDatos_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gvDatos.RowCommand
-        Me.Context.Items.Add("IdContenidoArchivo", e.CommandArgument)
+        Me.Context.Items.Add("IdContenidoFondo", e.CommandArgument)
         If e.CommandName.Equals("Eliminar") Then
-            Dim dumy As Integer = New ContenidoDAO().DelContenidoArchivo(CInt(e.CommandArgument))
+            Dim dumy As Integer = New ContenidoFondoDAO().DelContenidoFondo(CInt(e.CommandArgument))
             gvDatos.PageIndex = 0
             gvDatos.DataSource = GetDatos()
             gvDatos.DataBind()
@@ -54,8 +58,9 @@ Public Class lst_contenido_archivos
 
     Private Sub gvDatos_RowDataBound(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewRowEventArgs) Handles gvDatos.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim IdContenidoArchivo As String = CStr(DataBinder.Eval(e.Row.DataItem, "IdContenidoArchivo"))
-            CType(e.Row.FindControl("btnEliminar"), Button).CommandArgument = IdContenidoArchivo
+            Dim IdContenidoFondo As String = CStr(DataBinder.Eval(e.Row.DataItem, "IdContenidoFondo"))
+            CType(e.Row.FindControl("btnEliminar"), Button).CommandArgument = IdContenidoFondo
+            CType(e.Row.FindControl("imgArchivo"), Image).ImageUrl = "~/Handlers/ContenidoFondo.ashx?id=" & CStr(DataBinder.Eval(e.Row.DataItem, "Archivo"))
         End If
     End Sub
 
@@ -66,11 +71,15 @@ Public Class lst_contenido_archivos
 
         Try
             If fuArchivo.HasFile Then
-                Dim newFileName As String = ContenidoImagenUtils.GetNewFileName(fuArchivo.FileName)
-                Dim newPath As String = ContenidoImagenUtils.ResolveFileName(newFileName)
-                fuArchivo.SaveAs(newPath)
+                Dim archivoRandom As String = ContenidoUtils.GetRandomFileName(fuArchivo.FileName)
+                Dim contenidoFondoDir As String = New PropiedadDAO().GetPropiedad("ContenidoFondo.Dir")
 
-                Dim dumy As Integer = New ContenidoDAO().AddContenidoArchivo(IdContenido, tbNuevoGrupo.Text, newFileName)
+                Dim archivoPath As String = Path.Combine(contenidoFondoDir, archivoRandom)
+                fuArchivo.SaveAs(archivoPath)
+
+                Dim dumy As Integer = New ContenidoFondoDAO().AddContenidoFondo(IdContenido, _
+                                                                                CInt(ddlAnchoImagen.SelectedValue), _
+                                                                                archivoRandom)
 
                 gvDatos.PageIndex = 0
                 gvDatos.DataSource = GetDatos()

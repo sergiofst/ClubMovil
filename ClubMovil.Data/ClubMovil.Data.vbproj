@@ -80,6 +80,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseDAO.vb" />
+    <Compile Include="Constantes.vb" />
+    <Compile Include="ContenidoFondoDAO.vb" />
+    <Compile Include="ContenidoTonoDAO.vb" />
     <Compile Include="DescargaDAO.vb" />
     <Compile Include="FavoritoDAO.vb" />
     <Compile Include="MenuDAO.vb" />

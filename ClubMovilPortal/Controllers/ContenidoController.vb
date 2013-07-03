@@ -160,30 +160,73 @@ Public Class ContenidoController
             ' Entrego el contenido
             Dim drContenido As DataRow = daoContenido.GetContenido(CInt(drTransaccion("IdContenido")))
 
-            Dim tipoContenido As Integer = CInt(drContenido("TipoContenido"))
-            Dim directorio As String = CStr(ConfigurationManager.AppSettings("TipoContenido.Archivos.Directorio." & tipoContenido))
+            Dim tipoContenido As Integer = CInt(drContenido("IdTipoContenido"))
 
-            ' Busco el grupo que le corresponde
-            Dim grupo As String = BuscaGrupo(tipoContenido)
+            Dim archivo As String = String.Empty
 
-            Dim drContenidoArchivo As DataRow = daoContenido.GetContenidoArchivo(CInt(drContenido("IdContenido")), grupo)
-            Dim archivoPath As String = Path.Combine(directorio, CStr(drContenidoArchivo("Archivo")))
-
-            If Log.IsDebugEnabled Then
-                Log.Debug("Archivo: " & archivoPath)
+            If tipoContenido = 1 Then
+                ' Contenido Fondo
+                archivo = GetContenidoFondo(drContenido)
+            ElseIf tipoContenido = 2 Then
+                ' Contenido Fondo
+                archivo = GetContenidoTono(drContenido)
             End If
 
-            Return File(archivoPath, "application/octet-stream", CStr(drContenidoArchivo("Archivo")))
+            If Log.IsDebugEnabled Then
+                Log.Debug("Archivo: " & archivo)
+            End If
+
+            Return File(archivo, "application/octet-stream", Path.GetFileName(archivo))
         Else
             If Log.IsErrorEnabled Then
                 Log.Error(transResponse)
             End If
         End If
 
-
-        ' Entregar el contenido
-
         Return Nothing
+    End Function
+
+    Private Function GetContenidoFondo(ByVal drContenido As DataRow) As String
+        Dim device As IDevice = GetDeviceInfo()
+
+        Dim daoContenidoFondo As ContenidoFondoDAO = New ContenidoFondoDAO
+        Dim anchoDevice As Integer = Integer.Parse(device.GetCapability("resolution_width"))
+
+        If Log.IsDebugEnabled Then
+            Log.Debug("Ancho: " & anchoDevice)
+        End If
+
+        Dim drContenidoFondo As DataRow = daoContenidoFondo.GetContenidoFondo(CInt(drContenido("IdContenido")), anchoDevice)
+        Dim contenidoFondoDir As String = New PropiedadDAO().GetPropiedad("ContenidoFondo.Dir")
+
+        Return Path.Combine(contenidoFondoDir, CStr(drContenidoFondo("Archivo")))
+    End Function
+
+    Private Function GetContenidoTono(ByVal drContenido As DataRow) As String
+        Dim device As IDevice = GetDeviceInfo()
+
+        Dim formato As String = Nothing
+
+        If CBool(device.GetCapability("ringtone_mp3")) Then
+            formato = "mp3"
+        ElseIf CBool(device.GetCapability("ringtone_wav")) Then
+            formato = "wav"
+        ElseIf CBool(device.GetCapability("ringtone_aac")) Then
+            formato = "acc"
+        ElseIf CBool(device.GetCapability("ringtone_awb")) Then
+            formato = "awb"
+        ElseIf CBool(device.GetCapability("ringtone_amr")) Then
+            formato = "amr"
+        End If
+
+        If Log.IsDebugEnabled Then
+            Log.Debug("Formato: " & formato)
+        End If
+
+        Dim drContenidoFondo As DataRow = New ContenidoTonoDAO().GetContenidoTono(CInt(drContenido("IdContenido")), formato)
+        Dim contenidoFondoDir As String = New PropiedadDAO().GetPropiedad("ContenidoTono.Dir")
+
+        Return Path.Combine(contenidoFondoDir, CStr(drContenidoFondo("Archivo")))
     End Function
 
     Private Function BuscaGrupo(ByVal tipoContenido As Integer) As String

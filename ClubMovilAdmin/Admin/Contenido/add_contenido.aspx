@@ -14,11 +14,7 @@
                 <asp:Label ID="Label5" CssClass="control-label" AssociatedControlID="ddlTipoContenido"
                     Text="Tipo de contenido" runat="server" />
                 <div class="controls">
-                    <asp:DropDownList ID="ddlTipoContenido" runat="server" >
-                        <asp:ListItem Text="Imagenes" Value="1" />
-                        <asp:ListItem Text="Tonos" Value="2" />
-                        <asp:ListItem Text="Videos" Value="3" />
-                    </asp:DropDownList>
+                    <asp:DropDownList ID="ddlTipoContenido" runat="server" DataValueField="IdTipoContenido" DataTextField="Nombre" />
                 </div>
             </div>
             <div class="control-group">

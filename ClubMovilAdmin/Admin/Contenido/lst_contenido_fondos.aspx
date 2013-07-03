@@ -1,23 +1,21 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Admin/Admin.master"
-    CodeBehind="lst_contenido_archivos.aspx.vb" Inherits="ClubMovilAdmin.lst_contenido_archivos" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Admin/Admin.master" CodeBehind="lst_contenido_fondos.aspx.vb" Inherits="ClubMovilAdmin.lst_contenido_fondos" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    <title>Archivos de contenido</title>
+    <title>Contenido fondos</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <div class="page-header">
         <h1>
-            Archivos de contenido</h1>
+            Contenido fondos</h1>
     </div>
     <div class="row well">
         <fieldset>
             <div class="control-group">
-                <asp:Label ID="Label4" CssClass="control-label" AssociatedControlID="tbNuevoGrupo"
-                    Text="Grupo" runat="server" />
+                <asp:Label ID="Label4" CssClass="control-label" AssociatedControlID="ddlAnchoImagen"
+                    Text="Ancho" runat="server" />
                 <div class="controls">
-                    <asp:TextBox ID="tbNuevoGrupo" runat="server" CssClass="input-xlarge" />
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" ControlToValidate="tbNuevoGrupo"
-                        runat="server" ErrorMessage="" Display="Dynamic" />
+                    <asp:DropDownList ID="ddlAnchoImagen" runat="server" />
                 </div>
             </div>
             <div class="control-group">
@@ -36,12 +34,15 @@
         <asp:GridView ID="gvDatos" runat="server" CssClass="table table-striped table-condensed"
             AutoGenerateColumns="false" AllowPaging="true" PageSize="20">
             <Columns>
-                <asp:BoundField HeaderText="#" DataField="IdContenidoArchivo" ItemStyle-Width="25px" />
-                <asp:BoundField HeaderText="Grupo" DataField="Grupo" />
-                <asp:BoundField HeaderText="Archivo" DataField="Archivo" />
+                <asp:BoundField HeaderText="Ancho" DataField="AnchoImagen" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Image ID="imgArchivo" runat="server" />
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField ItemStyle-Width="100px">
                     <ItemTemplate>
-                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" />
+                        <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CommandName="Eliminar" CssClass="btn btn-danger" />
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
